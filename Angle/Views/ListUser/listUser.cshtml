@@ -1,0 +1,162 @@
+﻿@model Angle.Models.FilterUserModel;
+@{
+    ViewData["Title"] = "listUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+
+    <h1>Settings</h1>
+    <h2>View All Users</h2>
+    <h3>Filters:</h3>
+
+    <form asp-action="listUser" asp-controller="listUser" id="ListUserForm">
+
+        <div class="container">
+            <div class="row align-items-between">
+
+                <div class="col">
+
+                    <label for="UserRoleId">User Role:</label>
+                    <select name="UserRoleId" id="UserRoleId" class="form-control">
+                        <option value=@null selected></option>
+                        @foreach (var item in Model.Roles)
+                        {
+                            <option value="@item.RoleId">
+                                @item.UserRoleName
+                            </option>
+                        }
+
+                    </select>
+
+                </div>
+                <div class="col">
+
+                    <label for="EventTypeId">EventType:</label>
+                    <select name="EventTypeId" id="EventTypeId" class=" form-control" value="">
+                        <option value=@null selected></option>
+                        @foreach (var item in Model.EventTypes)
+                        {
+                            <option value=" @item.EventTypesId">
+                                @item.EventTypesName
+                            </option>
+                        }
+                    </select>
+
+                </div>
+                <div class="col">
+
+                    <label for="EventCategoryId">EventCategories:</label>
+                    <select name="EventCategoryId" id="EventCategoryId" class="form-control">
+                        <option value=@null selected></option>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <option value="@item.CategoryId">
+                                @item.CategoryName
+                            </option>
+                        }
+                    </select>
+
+                </div>
+            </div>
+            <hr />
+            <div class="row align-items-center">
+
+                <div class="col">
+
+                    <label for="BeginningDate">Beginning Date:</label>
+                    <input type="datetime-local" name="BeginningDate" class="form-control" data-val="true" id="BeginningDate">
+
+                    <label for="EndingDate" style="margin-top:20px;">Ending Date:</label>
+                    <input type="datetime-local" name="EndingDate" class="form-control" data-val="true" id="EndDate">
+
+                </div>
+                <div class="col">
+
+                    <label for="CV">CV?</label>
+                    <select name="CV" id="UploadCv" class="form-control">
+                        <option value=@null selected></option>
+                        <option value="0">YES</option>
+                        <option value="1">NO</option>
+                    </select>
+                </div>
+                <div class="col">
+
+                    <label for="Class">Class:</label>
+                    <select name="Class" class="form-control" id="ClassId">
+                        <option value=@null selected></option>
+                        @foreach (var item in Model.Classes)
+                        {
+                            <option value="@item.ClassId">
+                                @item.ClassName
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="form-group" style="text-align:center; margin-top:20px;">
+                <input type="button" id="dataBindBtn" value="Filter"
+                    style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c "
+                    class="btn btn-primary" />
+
+            </div>
+        </div>
+
+    </form>
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped my-4 w-100" id="userList">
+            </table>
+        </div>
+    </div>
+</body>
+
+@section Styles {
+<environment names="Development">
+    <link rel="stylesheet" href="~/vendor/datatables.net-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/vendor/datatables.net-keytable-bs/css/keyTable.bootstrap.css">
+    <link rel="stylesheet" href="~/vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css">
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="~/vendor/datatables.net-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/vendor/datatables.net-keytable-bs/css/keyTable.bootstrap.css">
+    <link rel="stylesheet" href="~/vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css">
+</environment>
+}
+
+@section Scripts {
+
+<environment names="Development">
+    <script src="~/vendor/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/vendor/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/dataTables.buttons.js"></script>
+    <script src="~/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.colVis.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.flash.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.html5.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.print.js"></script>
+    <script src="~/vendor/datatables.net-keytable/js/dataTables.keyTable.js"></script>
+    <script src="~/vendor/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/vendor/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/vendor/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/dataTables.buttons.js"></script>
+    <script src="~/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.colVis.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.flash.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.html5.js"></script>
+    <script src="~/vendor/datatables.net-buttons/js/buttons.print.js"></script>
+    <script src="~/vendor/datatables.net-keytable/js/dataTables.keyTable.js"></script>
+    <script src="~/vendor/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+</environment>
+<script src="~/listUserTable/listUser.js"></script>
+}

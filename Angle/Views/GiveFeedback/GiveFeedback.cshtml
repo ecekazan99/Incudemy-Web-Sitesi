@@ -1,0 +1,76 @@
+﻿@model Angle.Models.GiveFeedbackModel
+@{
+    ViewData["Title"] = "GiveFeedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Give Feedback</h1>
+
+<hr />
+
+<div style="position:relative; left:325px; top:8px;" class="row">
+    <div class="col-md-6">
+
+        <div class="form-group">
+
+            <label>Feedback Type :  </label>
+            <select>
+                @foreach (var item in Model.FeedbackTypes)
+                {
+                    <option value="@item.FeedbackTypeId">
+                        @item.FeedbackTypeName
+                    </option>
+                }
+            </select><br><br>
+
+
+
+
+
+            @*<textarea class="form-control" cols="200" name="Feedback" rows="7" maxlength="500"></textarea>
+
+
+                <div class="form-group" style="text-align:center; margin-top:20px;">
+                    <button type="submit" style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c " class="btn btn-primary">Submit</button>
+                    @Html.ActionLink("Submit", "ViewFeedback")
+                </div>*@
+
+
+
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; margin: right; margin-top: 4px;">
+    <div>Write down your feedback</div>
+
+</div>
+
+
+@using (Html.BeginForm())
+{
+
+    <center>
+        <div class="input-group">
+
+            <div class="container" style="width:700px">
+                <div style="text-align: right; margin: right; margin-top: 4px;">
+                    <div>(500 characters max)</div>
+
+                </div>
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "10", cols = "4" })
+            </div>
+        </div>
+        <br />
+
+        <div class="input-group-btn">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-primary" style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c " />
+            </div>
+        </div>
+
+    </center>
+}
+@*<br /> <br />
+<div class="alert alert-info">@TempData["Message"]</div>      usera feedback in gönderildiğiyle ilgili bilgi vermek icin*@   
+

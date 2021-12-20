@@ -1,0 +1,126 @@
+﻿@using Angle.Models
+@model Angle.Models.LoginModel
+@{
+    ViewData["Title"] = "LoginModel";
+}
+
+<h1>Login</h1>
+
+<hr />
+
+<div class="form-group"  style="padding-left:20%;">
+    <div class="col-md-6">
+        <style>
+            input.setCheckBox {
+                width: 10px;
+                height: 10px;
+            }
+        </style>
+
+        <form asp-action="LoginModel" asp-controller="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <div><b>Email</b></div>
+                <input name="email" type="email" placeholder="Your Email" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+
+            </div>
+
+            <div class="form-group">
+                <div><b>Password</b></div>
+                <input name="password" type="password" id="pass" placeholder="Your Password" asp-for="Password"
+                       class="form-control" />
+                <span class="help-block input-group-text text-muted bg-transparent border-0"
+                      style="float: right; margin-left: -20px; margin-top: -30px; position: relative;">
+                    <i class="far fa-eye" id="togglePassword2"></i>
+                    <script>
+                        const togglePassword2 = document.querySelector('#togglePassword2');
+                        const password = document.querySelector('#pass');
+
+
+
+                        togglePassword2.addEventListener('click', function (e) {
+                            // toggle the type attribute
+                            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                            password.setAttribute('type', type);
+                            // toggle the eye slash icon
+                            this.classList.toggle('fa-eye-slash');
+                        });
+                    </script>
+                </span>
+                <span asp-validation-for="Password"></span>
+            </div>
+
+            <div class="form-check" style="text-align:left;">
+                <input class="form-check-input" type="checkbox" value="" id="RememberMe" />
+                <label class="form-check-label" for="RememberMe" style="margin-top:1px;">
+                    Remember Me
+                </label>
+            </div>
+
+            <div style="text-align:center;">
+                <span class="psw">
+                    <a href="/Login/ForgotPassword">
+                        <img src="~/images/Forgot Password/forgot password.png" width="16" height="16"
+                             type="image/png" /> Forgot Password ?
+                    </a>
+                </span>
+            </div>
+            @*<div class="modal animated fade scale" id="forgotPasswordModal"tabindex="-2"aria-hidden="true"style="" >
+                <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <div style="text-align:center;"><span class="psw" <img src="~/images/Forgot Password/forgot password.png"
+                width="16" height="16" type="image/png" /> Forgot Password ?</span></div>
+                </div>
+                <div class="modal-body">
+                <div class="row">
+                <div class="col-md-12">
+                <div class="form-group form-md-line-input form-md-floating-label password-input"id="mailInput">
+                <input type="text" ng-model="email" class="form-control" ng-pristine ng-valid ng-empty ng-touched />
+                <label>E-Mail Address</label>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="modal-footer>
+                <button type="button" class="btn-blue no-text-transform"ng-click="sendBtnClick()"id="sendBtn">SEND </button>
+                </div>
+                </div>
+
+                </div>
+                <div class="logo">
+                <img src="~/images/Forgot Password/forgot password.png" width="16" height="16" type="image/png" />Forgot
+                Password ?
+                </div>*@
+
+
+            <div class="form-group" style="text-align:center; margin-top:15px;">
+                <button type="submit"
+                        style="color: #fff; background-color: #10244c; padding: 0.5rem 15%; border-color: #10244c "
+                        class="btn btn-primary">
+                    <b> Login</b>
+                </button>
+            </div>
+            <div style="text-align:center;">
+                <font color="Red">@TempData["msg"]</font>
+                <br />
+            </div>
+
+            <div style="text-align:center;">
+                <span class="reg">
+                    Do you want to join Incudemy ? <a href="/Register/Useradd">
+                        <img src="~/images/Register/add-user.png" width="16" height="16" type="image/png" />
+                       Register.
+                    </a>
+                </span>
+            </div>
+
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,102 @@
+﻿@model Angle.Models.EventModel
+@{
+    ViewData["Title"] = "SliderList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>SliderList:</h1>
+<div class="container">
+
+
+    <div class="container">
+        <a href="@Url.Action("Event", "Event")" title="Add Slider">
+
+            <button class="btn btn-success">
+                + Add Event
+            </button>
+        </a>
+    </div>
+
+
+    <div class="table">
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Images
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.EventsName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.EventLevelName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.EventTypesName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Eventmodel.IsItFree)
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.EventList)
+                {
+                    @using (Html.BeginForm("UpdateEvent", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                <tr>
+                    <th>
+                        <img class="img-fluid" src=@Url.Content(item.Images.FileWay) width="150" height="100">
+                    </th>
+                    <th>
+                        @item.Eventmodel.EventsName
+                    </th>
+
+                    <th>
+                        @item.Eventmodel.StartDate
+                    </th>
+                    <th>
+                        @item.Eventmodel.EndDate
+                    </th>
+                    <th>
+                        @item.Eventmodel.CategoryName
+                    </th>
+                    <th>
+                        @item.Eventmodel.EventLevelName
+                    </th>
+                    <th>
+                        @item.Eventmodel.EventTypesName
+                    </th>
+                    <th>
+                        @item.Eventmodel.IsItFree
+                    </th>
+                    <th>
+                        <input type="hidden" name="id" value=@item.Eventmodel.EventsId />
+                        <button type="submit" name="Details" value="@item.Eventmodel.EventsId" class="btn btn-success DetailsButton">Details</button>
+                    </th>
+                </tr>
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

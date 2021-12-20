@@ -1,0 +1,52 @@
+﻿
+@model Angle.Models.SurveyModel;
+@{
+
+    ViewBag.Title = "Survey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-10" style="background-color: white;">
+        <form asp-controller="Survey" asp-action="InsertResponseSurvey">
+            @foreach (var i in Model.surveyModel)
+            {<br />
+             <div class="form-group">
+                 <input type="hidden" value="@i.SurveyId" asp-for="SurveyId" />
+                 <h3>@i.SurveyTitle</h3>
+             </div>
+                <div class="form-group">
+                    <h4>@i.SurveyDescription</h4>
+                </div>
+                <div class="form-group">
+                    @foreach (var question in Model.Questions)
+                    {
+                        <hr />
+                        <div class="form-group row">
+                            <h4 class="questionId" id="@question.countForQuestionId">@question.questionNum )</h4>
+                            <input type="hidden" id="surveyQuestionId" name="surveyResponse[@question.countForQuestionId].SurveyQuestionId" value="@question.QuestionId"/>
+                            <div class="col-11">@question.Question</div>
+                        </div>
+
+                        @foreach (var answer in question.Options)
+                        {
+                            <div class="form-group">
+                                <label>
+                                    <input type="hidden" id="answerId" name="surveyResponse[@question.countForQuestionId].SurveyQuestionAnswerId" value="@answer.SurveyQuestionAnswerId" />
+                                    <input type="radio" value="@answer.AnswerText" name="surveyResponse[@question.countForQuestionId].AnswerText" />@answer.AnswerText
+                                </label>
+                            </div>
+                        }
+                    }
+                </div><br />
+            }
+            <hr />
+            <div class="form-group" style="text-align: left;">
+                <button type="submit" id="btn_SubmitSurvey" class="btn btn-primary" onmouseover="this.style.background = 'grey';" onmouseout="this.style.background = '#10244c';"
+                        style="color: #fff; background-color: #10244c; padding: 0.3rem 1.5rem; border-color: #10244c; font-size:120%;">
+                    Send
+                </button>
+            </div><br />
+        </form>
+    </div>
+</div>

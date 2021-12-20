@@ -1,0 +1,523 @@
+﻿@model Angle.Models.RoleModel;
+
+@{
+    ViewData["Title"] = "RoleModel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Role Control</h1>
+
+
+<hr />
+<div class="row" style="position: relative; left: 400px; ">
+    <div class="col-md-4">
+        <form asp-action="RoleModel">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+
+            <div class="form-group">
+                <div><b>Write Action To Add</b></div>
+                <input type="text" id="action" class="form-control" />
+                <span class="text-danger"></span>
+                <input type="text" id="action" class="form-control" />
+                <span class="text-danger"></span>
+                <input type="text" id="action"  class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group" style="text-align:center;">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+    <table class="table table-bordered table-responsive table-hover" style="background-color:white; text-align:center; width:100%;">
+        <thead style="background-color:deepskyblue;">
+            <tr>
+                <th><b>Update Profile</b></th>
+                <th><b>Admins</b></th>
+                <th><b>Instructors</b></th>
+                <th><b>Inters</b></th>
+                <th><b>Incudemists</b></th>
+                <th><b>Employees</b></th>
+            </tr>
+        </thead>
+        <tbody style="background-color:white;">
+
+            <tr>
+                <td><b>Edit of Update Profile</b></td>
+                <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+            </tr>
+            @*<tr>
+                    <td><b>Display of Company Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>Update and Edit of Compony Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>Display and Edit of Company Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <th style="background-color:deepskyblue;">Registered Events</th>
+                </tr>*@
+            @*<tr>
+                    <td><b>Edit and View All Event List and Enable/Disable Buttons</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>View of Registered Events in Profile</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display and Edit of All Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Favorites</thstyle="background-color:deepskyblue;"></tr>
+                <tr>
+                    <td><b>Display Favorites</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of Favorites</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Events(Courses, Seminars and Internships)</th></tr>
+                <tr>
+                    <td><b>Display of Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of All Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Create Events</th></tr>*@
+            @*<tr>
+                    <td><b>Display and Edit of Create Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Feedback</th></tr>
+                <tr>
+                    <td><b>Give Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display of All Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display and Edit of Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Partners</th></tr>
+                <tr>
+                    <td><b>Display and Partners</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of Partners</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Settings</th></tr>
+                <tr>
+                    <td><b>Display and Edit of All Settings</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+        </tbody>
+    </table>
+
+
+            <tr>
+                <td><b>Edit of Update Profile</b></td>
+                <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+            </tr>
+            @*<tr>
+                    <td><b>Display of Company Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>Update and Edit of Compony Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>Display and Edit of Company Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <th style="background-color:deepskyblue;">Registered Events</th>
+                </tr>*@
+            @*<tr>
+                    <td><b>Edit and View All Event List and Enable/Disable Buttons</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>View of Registered Events in Profile</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display and Edit of All Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Favorites</thstyle="background-color:deepskyblue;"></tr>
+                <tr>
+                    <td><b>Display Favorites</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of Favorites</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Events(Courses, Seminars and Internships)</th></tr>
+                <tr>
+                    <td><b>Display of Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of All Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Create Events</th></tr>*@
+            @*<tr>
+                    <td><b>Display and Edit of Create Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Feedback</th></tr>
+                <tr>
+                    <td><b>Give Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display of All Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display and Edit of Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Partners</th></tr>
+                <tr>
+                    <td><b>Display and Partners</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of Partners</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Settings</th></tr>
+                <tr>
+                    <td><b>Display and Edit of All Settings</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+        </tbody>
+    </table>
+
+            <tr>
+                <td><b>Edit of Update Profile</b></td>
+                <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+            </tr>
+            @*<tr>
+                    <td><b>Display of Company Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>Update and Edit of Compony Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>Display and Edit of Company Logo</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <th style="background-color:deepskyblue;">Registered Events</th>
+                </tr>*@
+            @*<tr>
+                    <td><b>Edit and View All Event List and Enable/Disable Buttons</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+            @*<tr>
+                    <td><b>View of Registered Events in Profile</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display and Edit of All Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Favorites</thstyle="background-color:deepskyblue;"></tr>
+                <tr>
+                    <td><b>Display Favorites</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of Favorites</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Events(Courses, Seminars and Internships)</th></tr>
+                <tr>
+                    <td><b>Display of Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of All Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Create Events</th></tr>*@
+            @*<tr>
+                    <td><b>Display and Edit of Create Events</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Feedback</th></tr>
+                <tr>
+                    <td><b>Give Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display of All Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Display and Edit of Feedbacks</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Partners</th></tr>
+                <tr>
+                    <td><b>Display and Partners</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b>Edit of Partners</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>
+                <tr><th style="background-color:deepskyblue;">Settings</th></tr>
+                <tr>
+                    <td><b>Display and Edit of All Settings</b></td>
+                    <td><input type="checkbox" name="perm1" asp-for="perm1" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm2" asp-for="perm2" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm3" asp-for="perm3" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm4" asp-for="perm4" />&nbsp;</td>
+                    <td><input type="checkbox" name="perm5" asp-for="perm5" />&nbsp;</td>
+                </tr>*@
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a> Back to List</a>
+</div>
+
+<div>
+    <a> Back to List</a>
+</div>

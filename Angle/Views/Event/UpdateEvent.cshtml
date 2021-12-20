@@ -1,0 +1,190 @@
+﻿@model Angle.Models.EventModel
+
+@{
+    ViewData["Title"] = "Update Event";
+}
+<h1>Update Event</h1>
+
+<div class="col-md-10 offset-md-1">
+    <section>
+
+        <span class="col-md-6">
+            @using (Html.BeginForm("Update", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <center>
+
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="col-md-6">
+
+
+                        <label for="UserName">User Name*:</label>
+                        <input type="text" name="UserName" value="@Model.Eventmodel.UserName"
+                               class="form-control" disabled><br><br>
+
+
+                        <label for="EventsName">Event Name*:</label>
+                        <input type="text" name="EventsName" asp-for="Eventmodel.EventsName" class="form-control" value="@Model.Eventmodel.EventsName"
+                               required><br><br>
+                        <span asp-validation-for="Eventmodel.EventsName" class="text-danger"></span>
+
+
+
+                        <label for="EventTypesId">Event Type*:</label>
+
+                        <select name="EventTypesId" id="EventTypesId" class="form-control" required>
+
+                            @foreach (var item in Model.EventTypes)
+                            {
+                                if (Model.Eventmodel.EventTypesName == item.EventTypesName)
+                                {
+                                    <option value="@item.EventTypesId" selected>
+                                        @item.EventTypesName
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.EventTypesId">
+                                        @item.EventTypesName
+                                    </option>
+                                }
+
+                            }
+                        </select><br><br>
+                        <label for="CategoryId">Event Categories*:</label>
+
+                        <select name="CategoryId" id="CategoryId" class="form-control" required>
+                            @foreach (var item in Model.Categories)
+                            {
+                                if (Model.Eventmodel.CategoryName == item.CategoryName)
+                                {
+                                    <option value="@item.CategoryId" selected>
+                                        @item.CategoryName
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.CategoryId">
+                                        @item.CategoryName
+                                    </option>
+                                }
+                            }
+                        </select><br><br>
+
+
+
+                        <label for="EventLevelId">Event Level*:</label>
+
+                        <select name="EventLevelId" id="EventLevelId" class="form-control" required>
+
+                            @foreach (var item in Model.EventLevels)
+                            {
+                                if (Model.Eventmodel.EventLevelName == item.EventLevelName)
+                                {
+                                    <option value="@item.EventLevelId" selected>
+                                        @item.EventLevelName
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@item.EventLevelId">
+                                        @item.EventLevelName
+                                    </option>
+                                }
+                            }
+                        </select><br><br>
+
+                        <label for="IsItFree">Is it Free?*:</label>
+                        <select name="IsItFree" id="IsItFree" class="form-control" required>
+                            @if (Model.Eventmodel.IsItFree == true)
+                            {
+                                <option value=true selected>Yes</option>
+                                <option value=false>No</option>
+
+                            }
+                            else
+                            {
+                                <option value=true>Yes</option>
+                                <option value=false selected>No</option>
+
+                            }
+                        </select><br><br>
+
+                        <label for="ParticipantNumber">Maximum Participants*:</label>
+
+
+                        <input type="number" value=@Model.Eventmodel.ParticipantNumber name="ParticipantNumber" id="ParticipantNumber" class="form-control" required />
+
+
+                        <label for="StartDate">Starting Date*:</label>
+                        <input type="datetime-local" name="StartDate" placeholder="Start Date" asp-for="Eventmodel.StartDate"
+                               class="form-control" value="@Convert.ToDateTime(Model.Eventmodel.StartDate).ToString("s")" required>
+                        <br>
+                        <br>
+
+
+
+                        <label for="EndDate">Ending Date*:</label>
+                        <input type="datetime-local" name="EndDate" placeholder="End Date" asp-for="Eventmodel.EndDate"
+                               class="form-control" value="@Convert.ToDateTime(Model.Eventmodel.EndDate).ToString("s")" required>
+                        <br>
+                        <br>
+
+                        <label for="IsActive">Is Active*:</label>
+                        <select name="IsActive" id="IsActive" class="form-control" required>
+                            @if (Model.Eventmodel.IsActive == true)
+                            {
+                                <option value=true selected>Yes</option>
+                                <option value=false>No</option>
+                            }
+                            else
+                            {
+                                <option value=true>Yes</option>
+                                <option value=false selected>No</option>
+                            }
+                        </select>
+                        <br>
+                        <br>
+
+                        <div>
+                            <img src=@Url.Content(Model.Images.FileWay) class="rounded event-img img-preview"
+                                 style="padding-left: 5%;">
+                        </div>
+                        <br>
+                        <br>
+                        <label for="ImageFileName">File Name:</label>
+                        <br>
+                        <input type="text" name="ImageFileName" asp-for="Images.ImageFileName" accept="image/*">
+                        <span asp-validation-for="Images.ImageFileName" class="text-danger"></span>
+                        <br>
+                        <br>
+                        <label for="ImageId">Upload:</label>
+                        <br>
+                        <input type="file" name="ImageFileData" asp-for="Eventmodel.ImageFileData" accept="image/*">
+                        <br>
+                        <br>
+
+
+
+                        <label for="EventsDescription">Event Description*:</label>
+
+                        <textarea name="EventsDescription" placeholder="Event Description" cols="40" rows="5"
+                                  maxlength="500" asp-for="Eventmodel.EventsDescription" class="form-control"
+                                  required>@Model.Eventmodel.EventsDescription</textarea>
+                        <br>
+                        <br>
+                        <input type="hidden" name="ImageId" id="ImageId" value=@Model.Images.ImageId asp-for="Eventmodel.ImageId" />
+                        <input type="hidden" name="EventsId" id="EventsId" value=@Model.Eventmodel.EventsId asp-for="Eventmodel.EventsId" />
+                        <button type="submit"
+                                style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c "
+                                class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </center>
+            }
+        </span>
+
+    </section>
+</div>

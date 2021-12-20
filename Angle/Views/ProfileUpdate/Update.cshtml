@@ -1,0 +1,340 @@
+﻿@model Angle.Models.ProfileUpdateModel;
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Sign Up</h1>
+
+<h4>Please fill in your information completely!</h4>
+<hr />
+<form  asp-action="Update" asp-controller="ProfileUpdate">
+<div class="row" style="padding-left:20%;">
+    <div class="col-md-6">
+
+        <style>
+            input.setCheckBox {
+                width: 15px;
+                height: 15px;
+            }
+        </style>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input name="name" type="text" placeholder="Name" asp-for="UpdateModel.Name" class="form-control" required />
+            @*<span asp-validation-for="UpdateModel.Name" class="text-danger"></span>*@
+        </div>
+
+        <div class="form-group">
+            <div>Surname</div>
+            <input name="surname" type="text" placeholder="Surname" asp-for="UpdateModel.Surname" class="form-control" required />
+            <span asp-validation-for="UpdateModel.Surname" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <div>E-mail</div>
+            <input name="email" type="text" placeholder="E-mail" asp-for="UpdateModel.Email" class="form-control" disabled />
+            <span asp-validation-for="UpdateModel.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group" required>
+            <div>E-mail Again (If new e-mail is given)</div>
+            <input name="confirmEmail" type="text" placeholder="E-mail" asp-for="UpdateModel.ConfirmEmail" class="form-control" />
+            <span asp-validation-for="UpdateModel.ConfirmEmail" class="text-danger"></span>
+        </div>
+        <label>Area Code*</label>
+        <br />
+        <div class="form-row">
+
+            <select class="form-control col-4" aria-label=".form-select-sm example" id="areacode" name="AreaCodeId" disabled>
+                @foreach (var item in Model.AreaCodes)
+                {
+                    @if (@item.AreaCodeId == Model.UpdateModel.AreaCodeId)
+                    {
+                        <option value="@item.AreaCodeId" selected>
+                            @item.AreaCodeName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@item.AreaCodeId">
+                            @item.AreaCodeName
+                        </option>
+                    }
+                }
+            </select>
+            <input name="phone" type="text" placeholder="Your Phone Number" asp-for="UpdateModel.Phone" maxlength="10" size="40" class="form-control col-8" disabled />
+            <span asp-validation-for="UpdateModel.Phone" class="text-danger"></span>
+        </div>
+        <br />
+        <label>Enter New Phone Number (If new phone number is given)</label>
+        <br />
+        <div class="form-row">
+            <select class="form-control col-4" aria-label=".form-select-sm example" id="confirmareacode" name="ConfirmAreaCodeId" >
+                @foreach (var item in Model.AreaCodes)
+                {
+                     <option value="@item.AreaCodeId">
+                           @item.AreaCodeName
+                      </option>
+                }
+            </select>
+            <input name="confirmPhone" type="text" placeholder="Your New Phone Number" asp-for="UpdateModel.ConfirmPhone" maxlength="10" size="40" class="form-control col-8"  />
+            <span asp-validation-for="UpdateModel.ConfirmPhone" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <div>Current Password</div>
+            <input name="currentPassword" type="password" id="pass1" placeholder="Enter Current Password" asp-for="UpdateModel.CurrentPassword" class="form-control" required />
+            <span class="help-block input-group-text text-muted bg-transparent border-0" style="float: right; margin-left: -20px; margin-top: -30px; position: relative;">
+                <i class="far fa-eye" id="togglePassword1"></i>
+                <script>
+
+                    const togglePassword1 = document.querySelector('#togglePassword1');
+                    const password1 = document.querySelector('#pass1');
+                    togglePassword1.addEventListener('click', function (e) {
+                        const type1 = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password1.setAttribute('type', type1);
+                        this.classList.toggle('fa-eye-slash');
+                    });
+                  
+                </script>
+            </span>
+            <span asp-validation-for="UpdateModel.CurrentPassword"></span>
+        </div>
+        <div class="form-group">
+            <div>New Password</div>
+            <input name="newPassword" type="password" id="pass2" placeholder="Enter New Password" asp-for="UpdateModel.NewPassword" class="form-control" />
+            <span class="help-block input-group-text text-muted bg-transparent border-0" style="float: right; margin-left: -20px; margin-top: -30px; position: relative;">
+                <i class="far fa-eye" id="togglePassword2"></i>
+                <script>
+
+                    const togglePassword2 = document.querySelector('#togglePassword2');
+                    const password2 = document.querySelector('#pass2');
+                    togglePassword2.addEventListener('click', function (e) {
+                        const type2 = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password2.setAttribute('type', type2);
+                        this.classList.toggle('fa-eye-slash');
+                    });
+
+                </script>
+            </span>
+            <span asp-validation-for="UpdateModel.NewPassword"></span>
+        </div>
+        <div class="form-group">
+            <div>Enter New Password Again* (If new password is given)</div>
+            <input name="confirmPassword" type="password" id="pass3" placeholder="Enter Again New Password" asp-for="UpdateModel.ConfirmPassword" class="form-control" />
+            <span class="help-block input-group-text text-muted bg-transparent border-0" style="float: right; margin-left: -20px; margin-top: -30px; position: relative;">
+                <i class="far fa-eye" id="togglePassword3"></i>
+                <script>
+                    const togglePassword3 = document.querySelector('#togglePassword3');
+                    const password3 = document.querySelector('#pass3');
+                    togglePassword3.addEventListener('click', function (e) {
+                        const type3 = password3.getAttribute('type') === 'password' ? 'text' : 'password';
+                        password3.setAttribute('type', type3);
+                        this.classList.toggle('fa-eye-slash');
+                    });
+                </script>
+            </span>
+            <span asp-validation-for="UpdateModel.ConfirmPassword"></span>
+        </div>
+        <div class="form-group">
+            <div>If Instructor or Working Incudemist, Company</div>
+            <input name="instructor" type="text" placeholder="Company Name" asp-for="UpdateModel.Instructor" class="form-control" />
+            <span asp-validation-for="UpdateModel.Instructor" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <div>If Instructor or Working Incudemist, Title at Company</div>
+            <input name="instructorTitle" type="text" placeholder="Title Of Your Company" asp-for="UpdateModel.InstructorTitle" class="form-control" />
+            <span asp-validation-for="UpdateModel.InstructorTitle" class="text-danger"></span>
+        </div>
+
+        @*<div class="form-group">
+            <div>Upload company logo to add company to our Partners list (8 mb max and JPEG or PNG only)(If Instructor)</div>
+
+            <label for="myfile" class="col-md-2 col-form-label"></label>
+            <div class="col-md-4">
+                <input id="UpdateLogo" lang="en-us" type="file" name="UploadLogo" asp-for="UpdateModel.UploadLogo" accept=".jpeg, .png" />
+            </div>
+        </div>*@
+
+            <div class="form-group">
+                <label>University*</label>
+                <select id="university" class="form-control" name="UniversityId">
+                    @foreach (var item in Model.Universities)
+                    {
+                        @if (@item.UniversityId == Model.UpdateModel.UniversityId)
+                        {
+                            <option value="@item.UniversityId" selected>
+                                @item.UniversityName
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.UniversityId">
+                                @item.UniversityName
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label>Class*</label>
+                <select id="class" class="form-control" name="ClassId">
+                    @foreach (var item in Model.Classes)
+                    {
+                        @if (@item.ClassId == Model.UpdateModel.ClassId)
+                        {
+                            <option value="@item.ClassId" selected>
+                                @item.ClassName
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.ClassId">
+                                @item.ClassName
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label>Department*</label>
+                <select id="department" class="form-control" name="DepartmantId">
+                    @foreach (var item in Model.Departmants)
+                    {
+                        @if (@item.DepartmantId == Model.UpdateModel.DepartmantId)
+                        {
+                            <option value="@item.DepartmantId" selected>
+                                @item.DepartmantName
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.DepartmantId">
+                                @item.DepartmantName
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <br />
+            @*<div class="form-group">
+                <div>Upload CV(10 mb max and PDF only)</div>
+
+                <label for="myfile" class="col-md-2 col-form-label"></label>
+                <div class="col-md-4">
+                    <input id="UpdateCV" type="file" name="UploadCV" asp-for="UpdateModel.UploadCV" accept=".pdf" />
+                </div>
+
+            </div>*@
+
+            @*<div class="form-group">
+            <div>Upload Profile Picture(8 mb max and only JPEG or PNG)</div>
+            <input asp-for="UpdateModel.UploadProfilePicture" class="form-control" />
+            <span asp-validation-for="UpdateModel.UploadProfilePicture" class="text-danger"></span>
+        </div>
+        <div class="from-group">
+
+            <br />*@
+
+            @*<div class="from-group">
+            <label>City</label>
+            <select id="city" class="from-control" name="CityId">
+                @foreach (var item in Model.Cities)
+                {
+                    <option value="@item.CityId">
+                        @item.CityName
+                    </option>
+                }
+            </select>
+        </div>
+        <br />
+
+        <div class="from-group">
+            <label>Town</label>
+            <select id="town" class="from-control" name="TownId">
+                @foreach (var item in Model.Towns)
+                {
+                    <option value="@item.TownId">
+                        @item.TownName
+                    </option>
+                }
+            </select>
+        </div>
+        <br />
+
+        <div class="from-group">
+            <label>Country</label>
+            <select id="country" class="from-control" name="CountryId">
+                @foreach (var item in Model.Countries)
+                {
+                    <option value="@item.CountryId">
+                        @item.CountryName
+                    </option>
+                }
+            </select>
+        </div>*@
+
+            <div class="form-group">
+                <div>Address</div>
+                <div>
+                    <input name="address" type="text" placeholder="Your Address" asp-for="UpdateModel.Address" class="form-control" />
+                </div>
+                <span asp-validation-for="UpdateModel.Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div>English Level</div>
+                <div>
+                    <input type="radio" id="1" value="1" name="Level">1&emsp;
+                    <input type="radio" id="2" value="2" name="Level">2&emsp;
+                    <input type="radio" id="3" value="3" name="Level">3&emsp;
+                    <input type="radio" id="4" value="4" name="Level">4&emsp;
+                    <input type="radio" id="5" value="5" name="Level">5&emsp;
+                    <input type="radio" id="6" value="6" name="Level">6&emsp;
+                    <input type="radio" id="7" value="7" name="Level">7&emsp;
+                    <input type="radio" id="8" value="8" name="Level">8&emsp;
+                    <input type="radio" id="9" value="9" name="Level">9&emsp;
+                    <input type="radio" id="10" value="10" name="Level">10
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group">
+                <div>Tick the ones you have knowledge or experince with:</div>
+                @foreach (var item in Model.Skills)
+                {
+                    @if (Model.UpdateModel.UserSkills.Contains(item.SkillsId))
+                    {
+                        <input name="UserSkills" type="checkbox" value="@item.SkillsId" checked /> @item.SkillsName<br />
+                    }
+                    else
+                    {
+                        <input name="UserSkills" type="checkbox" value="@item.SkillsId" /> @item.SkillsName<br />
+                    }
+                }
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update" style="color: #fff; background-color: #10244c; padding: 0.5rem 10%; border-color: #10244c " class="btn btn-primary" />
+            </div>
+
+        </div>
+        </div>
+    @*</div>*@
+    </form>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+

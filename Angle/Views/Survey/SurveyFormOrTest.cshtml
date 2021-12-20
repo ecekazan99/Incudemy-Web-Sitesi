@@ -1,0 +1,149 @@
+﻿@model Angle.Models.SurveyModel
+@{
+    ViewBag.Title = "Survey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form asp-action="SurveyFormOrTest" asp-controller="Survey">
+    <div class="container">
+        <div class="col-10" style="background-color:white">
+            <h2 id="formOrTest"></h2>
+            <div class="form-group">
+                <h3>Title*</h3>
+                <input type="text" placeholder="Title" asp-for="SurveyTitle" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <h4>Description*</h4>
+                <input type="text" placeholder="Description" asp-for="SurveyDescription" class="form-control" required/>
+            </div>
+            <div class="areaQuestion">
+                @Html.isActive("_AddQuestion")
+            </div>
+            <br /><br />
+            <a href="#btn_addQuestion" id="btn_addQuestion" class="btn btn-primary" onmouseover="this.style.background = 'grey';" onmouseout="this.style.background = '#10244c';" style="color: #fff; background-color: #10244c; padding: 0.5rem 1rem; border-color: #10244c; "><font size="4">Add New Question</font></a>
+            <div class="form-group" style="text-align: center;">
+                 <input type="hidden" id="surveyId" asp-for="SurveyFormOrTest" />
+                 <button type="submit" id="btn_Submit"  class="btn btn-primary" onmouseover="this.style.background = '#06a01d';" onmouseout="this.style.background = '#10244c';" style="color: #fff; background-color: #10244c; padding: 0.5rem 1rem; border-color: #10244c; font-size:120%;"></button>
+            </div><br />
+        </div>
+    </div>
+</form>
+
+    @section Scripts{
+        <script type="text/javascript">
+            var id = localStorage.getItem("idFormOrTest");
+            document.getElementById('surveyId').setAttribute('value', id);
+            var qId = 0;
+            var opId = 0;
+            defineSurvey();
+            controlCreateSurvey();
+           
+
+            $(document).on('click', '#btn_addQuestion', function (e) {
+                $.ajax({
+                    url: '/Survey/AddNewQuestion',
+                    success: function (partialView) {
+                        $('.areaQuestion').append(partialView);
+                        document.getElementsByClassName('question')[qId].id = qId;
+                        document.getElementsByClassName("col-11")[qId].innerHTML = ' <input type="text" class="form-control" id="question"'+
+                            ' name="Questions[' + qId + '].Question" placeholder="Question*" required>';
+                        elem = document.getElementsByClassName('textId')[qId];
+                        elem.innerHTML = qId + 1 + ")";
+                        qId++;
+                        opId = 0;
+                        controlCreateSurvey();
+                    }
+                });
+            });
+
+            $(document).on("click", "#btn_deleteQuestion", function () {
+                $(this).parent().parent().remove();
+                updateQuestionId();
+                controlCreateSurvey();
+            });
+
+            $(document).on('click', '#btn_addOption', function (e) {
+                var obj = $(this);
+                $.ajax({
+                    url: '/Survey/AddNewOption',
+                    success: function (partialView) {
+                        obj.parent().append(partialView);
+
+                        var questionId = obj.parent().parent().parent().attr('id');
+                        opId = obj.parent().attr('id');
+                        document.getElementsByClassName("areaOption")[questionId].getElementsByClassName("col-8")[opId].innerHTML = '<input type="text" class="form-control" placeholder="Option*" name="Questions[' + questionId + '].Options['+opId+'].AnswerText" required>';
+                        
+                        if (id == 1) {
+                            var radioBtn;
+                            if (opId == 0) {
+                                radioBtn = '<label class="btn" title="correct answer" name="SurveyFormOrTest" id="correctAnswer"><input type="radio" value="' + opId + '" name="Questions[' + questionId + '].CorrectAnswer" checked>✔ </label >';
+                            }
+                            else {
+                                radioBtn = '<label class="btn" title="correct answer" name="SurveyFormOrTest" id="correctAnswer"><input type="radio" value="' + opId + '" name="Questions[' + questionId + '].CorrectAnswer">✔ </label >';                              
+                            }
+                            document.getElementsByClassName("areaOption")[questionId].getElementsByClassName("radioArea")[opId].innerHTML = radioBtn;
+                        }
+                        controlCreateSurvey();
+                        opId++;
+                        obj.parent().attr('id', opId);
+                    }
+                });
+            });
+
+            $(document).on("click", "#btn_deleteOption", function () {
+                var obj = $(this);
+                var opId = obj.parent().parent().attr('id');
+                opId--;
+                obj.parent().parent().attr('id', opId);
+                $(this).parent().remove();
+                controlCreateSurvey();
+                if (id == 1) {
+                    var i = 0;
+                    var j = 0;
+                    for (i = 0; i < qId; i++) {
+                         var elem = document.getElementsByName('Questions[' + i + '].CorrectAnswer');
+                         for (j = 0; j < elem.length; j++) {
+                             if (elem[j].checked) {
+                                break;
+                             }
+                        }
+                        if (j == elem.length && j > 0) {
+                            elem[0].checked = true;
+                        } 
+                        if (j <=1||opId<1) {
+                            document.getElementById("btn_Submit").disabled = true;
+                        }
+                    }
+                }
+            });
+
+            function updateQuestionId() {
+                var i;
+                for (i = 0; i < qId - 1; i++) {
+                    document.getElementsByClassName('question')[i].id = i;
+                    elem = document.getElementsByClassName('textId')[i];
+                    elem.innerHTML = i + 1 + ")";
+                }
+                qId = i;
+            }
+
+            function controlCreateSurvey() {
+                if (qId == 0 || opId < 1) {
+                    document.getElementById("btn_Submit").disabled = true;
+                }
+                else {
+                    document.getElementById("btn_Submit").disabled = false;
+                }
+            }
+
+            function defineSurvey() {
+                if (id == 0) {
+                    document.getElementById("formOrTest").innerHTML = "NEW FORM";
+                    document.getElementById("btn_Submit").innerHTML = "CREATE FORM";
+                }
+                else {
+                    document.getElementById("formOrTest").innerHTML = "NEW TEST";
+                    document.getElementById("btn_Submit").innerHTML = "CREATE TEST";
+                }
+            }
+        </script>
+    }

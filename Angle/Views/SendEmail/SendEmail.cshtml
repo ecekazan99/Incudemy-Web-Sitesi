@@ -1,0 +1,149 @@
+﻿@model Angle.Models.SendEmail
+
+@{
+    ViewData["Title"] = "SendEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<h1>Settings:</h1>
+
+<h2>Send E-Mail:</h2>
+<br />
+
+<div class="col-md-12">
+    <h3><img src="~/images/filter.png" width="20" height="20" type="image/png" /> Filters:</h3>
+    <div class="container">
+        <div class="row py-4 ">
+            <div class="col-lg-3 flex-center text-md-left">
+
+                <label>To Whom? :  </label>
+                <select>
+                    @foreach (var item in Model.Roles)
+                    {
+                        <option value="@item.RoleId">
+                            @item.UserRoleName
+                        </option>
+                    }
+                </select><br>
+
+            </div>
+            <br />
+
+
+            <!--<div class="col-lg-3 flex-center text-md-left">-->
+
+                @*<select name="EventTypesId" id="EventTypesId" class="form-control" required>*@
+
+                <label>Event Types? :  </label>
+                <select>
+                    @*@foreach (var item in Model.EventTypes)
+                    {
+                        <option value="@item.EventTypesId">
+                            @item.EventTypesName
+                        </option>
+                    }*@
+                </select><br>
+
+            </div>
+            <br />
+            @*<div class="col-lg-3 flex-center text-md-left">
+
+                <label>Event Categories? :  </label>
+                <select>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <option value="@item.CategoryId">
+                            @item.CategoryName
+                        </option>
+                    }
+                </select><br>
+                <br>
+
+            </div>*@
+
+            <div class="col-lg-3 flex-center text-md-left">
+
+                <label>Registered Since : </label>
+
+                @*<img src="~/images/calendar.png" width="20" height="20" type="image/png" />*@
+
+                <!--<input type="date" id="start" name="trip-start"
+                       value=" / / "
+                       min="2021-08-29" max="2030-12-30">
+            </div>
+
+
+        </div>-->
+    </div>
+</div>
+
+
+@*<center>
+    <div class="col-md-7">
+        <div style="margin-top: 5px; text-align: left; ">
+            <div>E-mail:</div>
+        </div>
+<textarea class="form-control" cols="5" name="Email" rows="8"></textarea>
+    </div>
+    <br />
+
+    <button type="submit" style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c " class="btn btn-primary">Send</button>
+</center>*@
+
+
+@*<div class="form-group">
+    @Html.LabelFor(model => model.mail, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextAreaFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+    </div>
+</div>*@
+<br />
+
+@using (Html.BeginForm()) { 
+<div class="alert alert-info">@TempData["Message"]</div>
+<center>
+    <div class="input-group">
+        @Html.LabelFor(model => model.mail, htmlAttributes: new { @class = "control-label col-md-2" }) 
+        <div class="col-md-2">
+            @Html.TextAreaFor(model => model.mail, new { @class="",rows = "10", style = "width:900px; height:300px;" })
+            @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+
+    <div class="input-group-btn">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Send" class="btn btn-primary" style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c " />
+        </div>
+    </div>
+</center>
+    
+}
+@*<button type="submit" style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c " class="btn btn-primary">Send</button>*@
+@*<body>
+
+        <center class="wrapper" table-layout="fixed">
+            <div class="webkit" style="max-width:600px">
+
+                <table class="outer" style="margin: 0 auto">
+                    <tr>
+                        <td>
+                            <table width="100%" style="border-spacing:0; text-align:center">
+                                <tr>
+                                    <td>
+                                        <a href=""><img src="~/images/incudemy icon.png" width="180" /></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </center>
+    </body>*@

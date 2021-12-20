@@ -1,0 +1,90 @@
+﻿
+@model Angle.Models.SurveyModel;
+@{
+
+    ViewBag.Title = "Survey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="form-group" style="text-align:left; margin-top:5%;">
+        <a href="/Survey/SurveyFormOrTest" name="form" onmouseover="this.style.background='grey'"
+           onmouseout="this.style.background='#10244c'" class="btn btn-primary" onclick="formClick()"
+           style="color: #fff; background-color: #10244c; padding: 0.4rem 4rem; border-color: #10244c">
+            <font size="4"><b>+</b> New Form</font>
+        </a>
+
+        <a href="/Survey/SurveyFormOrTest" name="test" onmouseover="this.style.background='grey'"
+           onmouseout="this.style.background='#10244c'" class="btn btn-primary" onclick="testClick()"
+           style="color: #fff; background-color: #10244c; padding: 0.4rem 4rem; border-color: #10244c">
+            <font size="4"><b>+</b> New Test</font>
+        </a>
+    </div><br />
+    <div class="col-12" style="background-color:white;">
+        <br />
+        <div class="form-group row ">
+            <div class="col-2"><b>Title</b></div>
+            <div class="col-3"><b>Description</b></div>
+            <div class="col-2"><b>Start Date</b></div>
+            <div class="col-2"><b>End Date</b></div>
+            <div class="col-1" style="text-align:center;"><b>Show</b></div>
+            <div class="col-1" style="text-align:center;"><b>Response</b></div>
+            <div class="col-1" style="text-align:center;"><b>Delete</b></div>
+        </div>
+        @foreach (var i in Model.surveyModel)
+        {
+            <hr />
+            <div class="row">
+                <div class="col-2"><h5>@i.SurveyTitle  </h5></div>
+                <div class="col-3"><h5>@i.SurveyDescription</h5></div>
+                <div class="col-2"><h5> @i.StartDate</h5></div>
+                <div class="col-2"><h5>@i.EndDate </h5></div>
+                <div class="col-1" style="text-align:center;">
+                    <form asp-action="DisplaySurvey" asp-controller="Survey">
+                        <input type="hidden" name="id" value=@i.SurveyId />
+                        <button type="submit" id="btn_displayQuestion" class="btn" onmouseover="this.style.background='#00ff00'" title="show"
+                                onmouseout="this.style.background='grey'" value="@i.SurveyId" style="color: #fff; background-color: grey; border-color: grey; padding: 0.3rem 0.3rem; ">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-1" style="text-align:center;">
+                    <form asp-action="DisplayAllQuestionsAndOptions" asp-controller="Survey">
+                        <input type="hidden" name="id" value=@i.SurveyId />
+                        <button type="submit" id="btn_displayQuestion" class="btn" onmouseover="this.style.background='#4876ff'" title="response"
+                                onmouseout="this.style.background='grey'" value="@i.SurveyId" style="color: #fff; background-color: grey; border-color: grey; padding: 0.3rem 0.5rem; ">
+                            <i class="far fa-file-alt"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-1" style="text-align:center;">
+                    <form asp-controller="Survey" id="openPopup">
+                        <input type="hidden" name="id" value=@i.SurveyId />
+                        <button type="submit" id="btn_deleteQuestion" class="btn" onmouseover="this.style.background='red'" title="delete" onclick="deleteClick()"
+                                onmouseout="this.style.background='grey'" value="@i.SurveyId" style="color: #fff; background-color: grey; border-color: grey; padding: 0.3rem 0.4rem;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function formClick() {
+            localStorage.setItem("idFormOrTest", 0);
+        }
+        function testClick() {
+            localStorage.setItem("idFormOrTest", 1);
+        }
+
+        function deleteClick() {
+            if (confirm("Survey will be deleted, are you sure?")) {
+                form_url = $("#openPopup").attr("action","DeleteSurvey");
+            } else {
+                form_url = $("#openPopup").attr("action","Survey");
+            }
+        }
+    </script>
+}

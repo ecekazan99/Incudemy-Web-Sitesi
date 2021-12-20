@@ -1,0 +1,84 @@
+﻿@model Angle.Models.SliderSettingsModel
+@{
+    ViewData["Title"] = "SliderList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>SliderList:</h1>
+<div class="container">
+
+
+    <div class="container">
+        <a href="@Url.Action("SliderSettings", "SliderSettings")" title="Add Slider">
+
+            <button class="btn btn-success">
+                + Add Slider
+            </button>
+        </a>
+    </div>
+
+
+    <div class="table">
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Images
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SortOrder)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.SiteMenuId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsActive)
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PageImagesList)
+                {
+                    @using (Html.BeginForm("DetailSlider", "SliderSettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <tr>
+                            <th>
+                                <img class="img-fluid" src=@Url.Content(item.Images.FileWay) width="150" height="100">
+                            </th>
+                            <th>
+                                @item.SortOrder
+                            </th>
+
+                            <th>
+                                @item.SiteMenuId
+                            </th>
+                            <th>
+                                @item.CreatedDate.ToLongDateString()
+                            </th>
+                            <th>
+                                @item.IsActive
+                            </th>
+                            <th>
+                                <input type="hidden" name="id" value=@item.PageImagesId />
+                                <button type="submit" name="Details" value="@item.PageImagesId" class="btn btn-success DetailsButton">Details</button>
+                            </th>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

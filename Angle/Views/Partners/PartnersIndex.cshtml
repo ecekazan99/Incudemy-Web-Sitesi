@@ -1,0 +1,88 @@
+@model Angle.Models.PartnersModel
+@{
+    ViewBag.Title = "PartnersIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Partners</h2>
+
+<p>
+    <a href="/Partners/Partners/" class="btn btn-primary">Upload Photo</a>
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Partnersmodel.ImageId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P.PartnerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Partnersmodel.ImageFileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Partnersmodel.FileWay)
+
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.P.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P.Description)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @*@foreach (var item in Model.Allpartners)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageFileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileWay)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modeItem => item.ImageId)
+                </td>
+
+            </tr>
+        }*@
+
+
+    @foreach (var i in Model.Allpartners)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => i.ImageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => i.ParnerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => i.ImageFileName)
+
+            <td>
+                <img src=@Url.Content(i.File) width="100" height="100" />
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => i.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => i.Description)
+            </td>
+
+
+            @*<td><a href="/Partners/Delete/@item.ImageId">Sil</a></td>*@
+
+        </tr>
+    }
+</table>

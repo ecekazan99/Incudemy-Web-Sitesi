@@ -1,0 +1,102 @@
+﻿@model Angle.Models.SliderSettingsModel
+@{
+    ViewData["Title"] = "DetailSlider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    Shortorder elle girilecek sadece sayı girilecek.
+    sitemenuId default 1 gnderilecek ve ekranda gösterilecek.
+    image name eklensin
+
+    update sayfasında isim değişilecek
+    fotoğraf değişilecek
+    silme ve is active değişilecek
+    fotoğraf sırası değiştirilecek
+*@
+<h1>Settings:</h1>
+
+<h2>Upload Photo:</h2>
+@using (Html.BeginForm("UpdateSlider", "SliderSettings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <center>
+        <div class="row col-md-5">
+
+            <style>
+                .left {
+                    margin-top: 5px;
+                    margin-right: 530px;
+                }
+
+                .right {
+                    margin-top: 5px;
+                    margin-left: 150px;
+                }
+            </style>
+            <div class="fa-align-center">
+                <input type="hidden" value=@Model.PageImagesId asp-for="PageImagesId"  />
+            </div>
+
+            <div class="container">
+
+                <p>Image File Name:</p>
+                <input type="text" value=@Model.Images.ImageFileName class="form-control" required asp-for="Images.ImageFileName"/>
+                <br /> <br />
+
+            </div>
+
+            <div class="container">
+
+                <img class="card-img-top" src=@Url.Content(Model.Images.FileWay) alt="Snow" width="100%">
+                <br>
+                <br>
+                <label for="ImageId">Photo :</label>
+                <br>
+                <div class="form-group">
+
+                    <div class="col-lg-3">
+                        <input type="file"  name="File" class="form-control"  placeholder="Choose File" asp-for="File" />
+
+                    </div>
+                </div>
+                &nbsp;<span class="right">10 mb max per photo and 5 photos max and JPEG or PNG only</span>
+
+
+            </div>
+            <div class="container">
+                <span class="left">Order</span>
+                <input type="text" value="@Model.SortOrder" name="SortOrder" asp-for="SortOrder" />
+            </div>
+            <div class="container">
+                <span class="left">Is Active:</span>
+                <select name="IsActive" id="IsActive" class="form-control" required asp-for="IsActive">
+                    @if (Model.IsActive == true)
+                    {
+                        <option value="True" selected>
+                            True
+                        </option>
+                        <option value="False">
+                            False
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="False" selected>
+                            True
+                        </option>
+                        <option value="True">
+                            False
+                        </option>
+                    }
+
+                </select>
+            </div>
+        </div>
+    </center>
+
+
+    <div class="form-group" style="text-align:center; margin-top:20px;">
+        <a href="/SliderSettings/SliderSettings2">
+            <button type="submit" style="color: #fff; background-color: #10244c; padding: 0.5rem 6rem; border-color: #10244c" class="btn btn-primary" href=" ">Save</button>   <!-- href içine saveden sonra gelecek 2.slider settings sayfası linkle-->
+    </div>
+}

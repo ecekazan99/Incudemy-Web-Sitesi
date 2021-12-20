@@ -1,0 +1,61 @@
+﻿@model Angle.Models.SurveyModel;
+
+@{
+    ViewData["Title"] = "DisplayAllQuestionsAndOptions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-10" style="background-color: white;">
+        @foreach (var i in Model.surveyModel)
+        {
+            <br />
+            <div class="form-group" style="text-align: right;">
+                <form asp-action="DisplayResponseSurvey" asp-controller="Survey">
+                    <input type="hidden" name="id" value=@i.SurveyId />
+                    <button type="submit" id="btn_Response" class="btn btn-primary" onmouseover="this.style.background = 'grey';" onmouseout="this.style.background = '#10244c';"
+                            style="color: #fff; background-color: #10244c; padding: 0.3rem 1.5rem; border-color: #10244c; font-size:120%;">
+                        Response Table
+                    </button>
+                </form>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="hidden" value="@i.SurveyId" asp-for="SurveyId" />
+                <h3>@i.SurveyTitle</h3>
+            </div>
+            <div class="form-group">
+                <h4>@i.SurveyDescription</h4>
+            </div>
+            <div class="form-group">
+                @foreach (var question in Model.Questions)
+                {
+                    <hr />
+                    <div class="form-group row">
+                        <h4 class="questionId" id="@question.countForQuestionId">@question.questionNum )</h4>
+                        <input type="hidden" id="surveyQuestionId" name="surveyResponse[@question.countForQuestionId].SurveyQuestionId" value="@question.QuestionId" />
+                        <div class="col-11">@question.Question</div>
+                    </div>
+
+                    @foreach (var answer in question.Options)
+                    {
+                        <div class="form-group">
+                            <label>
+                                <input type="hidden" id="answerId" name="surveyResponse[@question.countForQuestionId].SurveyQuestionAnswerId" value="@answer.SurveyQuestionAnswerId" />
+                                @if (question.CorrectAnswer == answer.countForOptionId)
+                                {
+                                    <input type="radio" value="@answer.AnswerText" name="surveyResponse[@question.countForQuestionId].AnswerText" checked />@answer.AnswerText
+                                    <font color="#00B300">(✔ Correct Answer)</font>
+                                }
+                                else
+                                {
+                                    <input type="radio" value="@answer.AnswerText" name="surveyResponse[@question.countForQuestionId].AnswerText" disabled />@answer.AnswerText                                   
+                                }
+                            </label>
+                        </div>
+                    }
+                }
+            </div><br />
+        }
+    </div>
+</div>

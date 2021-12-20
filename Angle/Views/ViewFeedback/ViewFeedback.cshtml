@@ -1,0 +1,47 @@
+﻿@model Angle.Models.ViewFeedbackModel;
+
+@{
+    ViewData["Title"] = "ViewFeedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>View Feedback</h1>
+
+<div class="col-md-10 offset-md-1">
+
+    <section>
+
+        <span class="col-md-1">
+
+            <form action="/action_page.php">
+                <em><label >Filter</label></em>
+                <div class="col-md-6">
+                    <div style="position:relative;top:65px;">
+                        <label for="RoleType">Role</label>
+
+                        <select name="RoleId" id="role" class="form-control" >
+
+                            @foreach (var item in Model.RoleTypes)
+                            {
+                                <option value="@item.RoleId">
+                                    @item.UserRoleName
+                                </option>
+                            }
+                        </select>
+                    </div>
+                    <div style="position:relative;left:600px;">
+                        <label for="Events">Events:</label>
+
+                        <select name="Events" id="events" class="form-control" required>
+                            <option value="Power BI">Power BI</option>
+                            <option value="Excel">Excel</option>
+                            <option value="etc">etc</option>
+
+                        </select>
+                    </div>
+                </div>
+
+            </form>
+
+            </span>
+        </section>
+    </div>
